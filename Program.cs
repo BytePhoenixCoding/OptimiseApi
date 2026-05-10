@@ -20,8 +20,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddProblemDetails();
 
-var connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+var dbConnectionString = builder.Configuration.GetConnectionString("OptimiseDb");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(dbConnectionString));
 
 var app = builder.Build();
 
